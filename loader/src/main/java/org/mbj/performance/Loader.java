@@ -14,6 +14,8 @@ public class Loader implements Observer {
 	private long time;
 	private long totalTime;
 	private long totalNbOfExecutions;
+	private long min;
+	private long max;	
 
 	public Loader(List<Client> clients) {
 		super();
@@ -35,7 +37,7 @@ public class Loader implements Observer {
 		time = -System.currentTimeMillis();
 		for (Client client : clients) {
 			new Thread(client).start();
-			log.debug("Started client {}", client.getId());
+			log.info("Started client {}", client.getId());
 		}
 		synchronized (this) {
 			while (countDown > 0) {
@@ -47,18 +49,18 @@ public class Loader implements Observer {
 			}
 		}
 		time += System.currentTimeMillis();
-		log.debug("Time: {} ms.", time);
-		log.debug("Total time: {} ms.", totalTime);
-		log.debug("Total number of executions: {}.", totalNbOfExecutions);
-		log.debug("Average time/execution: {} ms.", (((double)totalTime) / ((double)totalNbOfExecutions)));
-		log.debug("Average executions/s: {}.", (((double)totalNbOfExecutions) / ((double)time)) * 1000);
+		log.info("Time: {} ms.", time);
+		log.info("Total time: {} ms.", totalTime);
+		log.info("Total number of executions: {}.", totalNbOfExecutions);
+		log.info("Average time/execution: {} ms.", (((double)totalTime) / ((double)totalNbOfExecutions)));
+		log.info("Average executions/s: {}.", (((double)totalNbOfExecutions) / ((double)time)) * 1000);
 	}
 
 	public void update(Observable observable, Object time) {
 		synchronized (this) {
 			Client client = (Client)observable;
 			long clientTime = (Long) time;
-			log.debug("Finished client {} in {} ms.", client.getId(), clientTime);
+			log.info("Finished client {} in {} ms.", client.getId(), clientTime);
 			totalTime += clientTime;
 			totalNbOfExecutions += client.getNbOfExecutions();
 			countDown--;
