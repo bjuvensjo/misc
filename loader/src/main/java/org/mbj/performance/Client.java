@@ -10,8 +10,9 @@ public class Client extends Observable implements Runnable {
 	private String id;
 	private Runnable runnable;
 	private int nbOfExecutions;
-	private long min;
-	private long max;
+	private long totalExecutionTime;
+	private long minExecutionTime;
+	private long maxExecutionTime;
 	
 
 	public Client(String id, Runnable runnable, int nbOfExecutions) {
@@ -19,8 +20,9 @@ public class Client extends Observable implements Runnable {
 		this.id = id;
 		this.nbOfExecutions = nbOfExecutions;
 		this.runnable = runnable;
-		this.min = Long.MAX_VALUE;
-		this.max = Long.MIN_VALUE;
+		this.totalExecutionTime = 0;
+		this.minExecutionTime = Long.MAX_VALUE;
+		this.maxExecutionTime = Long.MIN_VALUE;
 	}
 
 	public String getId() {
@@ -31,29 +33,30 @@ public class Client extends Observable implements Runnable {
 		return nbOfExecutions;
 	}
 	
-	public long getMin() {
-    	return min;
+	public long getTotalExecutionTime() {
+    	return totalExecutionTime;
     }
 
-	public long getMax() {
-    	return max;
+	public long getMinExecutionTime() {
+    	return minExecutionTime;
+    }
+
+	public long getMaxExecutionTime() {
+    	return maxExecutionTime;
     }
 
 	public void run() {
-		//long time = -System.currentTimeMillis();
-		long totalTime = 0;
 		for (int i = 0; i < nbOfExecutions; i++) {
-			long time = -System.currentTimeMillis();
+			long executionTime = -System.currentTimeMillis();
 			runnable.run();
-			time += System.currentTimeMillis();
-			log.debug("Finished client {} execution {} in {} ms.", new Object[] {id, String.valueOf(i), time});
-			min = Math.min(min, time);
-			max = Math.max(max, time);
-			totalTime += time;
+			executionTime += System.currentTimeMillis();
+			log.debug("Finished client {} execution {} in {} ms.", new Object[] {id, String.valueOf(i), executionTime});
+			minExecutionTime = Math.min(minExecutionTime, executionTime);
+			maxExecutionTime = Math.max(maxExecutionTime, executionTime);
+			totalExecutionTime += executionTime;
 		}
-		//time += System.currentTimeMillis();
-		log.info("Finished client {} in {} ms.", id, totalTime);
+		log.debug("Finished client {} in {} ms.", id, totalExecutionTime);
 		setChanged();
-		notifyObservers(totalTime);
+		notifyObservers();
 	}
 }

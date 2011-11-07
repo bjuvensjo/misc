@@ -11,30 +11,32 @@ public class Loader implements Observer {
 	private static Logger log = LoggerFactory.getLogger(Loader.class);
 	private List<Client> clients;
 	private int countDown;
-	private long time;
 	private long totalTime;
+	private long totalClientExecutionTime;
 	private long totalNbOfExecutions;
-	private long min;
-	private long max;	
+	private long minExecutionTime;
+	private long maxExecutionTime;	
 
 	public Loader(List<Client> clients) {
 		super();
 		this.clients = clients;
 		this.countDown = clients.size();
-		this.time = 0;
 		this.totalTime = 0;
+		this.totalClientExecutionTime = 0;
 		this.totalNbOfExecutions = 0;
+		this.minExecutionTime = Long.MAX_VALUE;
+		this.maxExecutionTime = Long.MIN_VALUE;		
 	}
 
 	public long getTotalTime() {
-		return time;
+		return totalTime;
 	}
 
 	public void start() {
 		for (Client client : clients) {
 			client.addObserver(this);
 		}
-		time = -System.currentTimeMillis();
+		totalTime = -System.currentTimeMillis();
 		for (Client client : clients) {
 			new Thread(client).start();
 			log.info("Started client {}", client.getId());
@@ -48,20 +50,23 @@ public class Loader implements Observer {
 				}
 			}
 		}
-		time += System.currentTimeMillis();
-		log.info("Time: {} ms.", time);
+		totalTime += System.currentTimeMillis();
 		log.info("Total time: {} ms.", totalTime);
+		log.info("Total client execution time: {} ms.", totalClientExecutionTime);
 		log.info("Total number of executions: {}.", totalNbOfExecutions);
-		log.info("Average time/execution: {} ms.", (((double)totalTime) / ((double)totalNbOfExecutions)));
-		log.info("Average executions/s: {}.", (((double)totalNbOfExecutions) / ((double)time)) * 1000);
+		log.info("Average time/execution: {} ms.", (((double)totalClientExecutionTime) / ((double)totalNbOfExecutions)));
+		log.info("Min time/execution: {} ms.", minExecutionTime);
+		log.info("Max time/execution: {} ms.", maxExecutionTime);
+		log.info("Average executions/s: {}.", (((double)totalNbOfExecutions) / ((double)totalTime)) * 1000);
 	}
 
 	public void update(Observable observable, Object time) {
 		synchronized (this) {
 			Client client = (Client)observable;
-			long clientTime = (Long) time;
-			log.info("Finished client {} in {} ms.", client.getId(), clientTime);
-			totalTime += clientTime;
+			log.info("Finished client {} in {} ms.", client.getId(), client.getTotalExecutionTime());
+			minExecutionTime = Math.min(minExecutionTime, client.getMinExecutionTime());
+			maxExecutionTime = Math.max(maxExecutionTime, client.getMaxExecutionTime());			
+			totalClientExecutionTime += client.getTotalExecutionTime();
 			totalNbOfExecutions += client.getNbOfExecutions();
 			countDown--;
 			this.notifyAll();
