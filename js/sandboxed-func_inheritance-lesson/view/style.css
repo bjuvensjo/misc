@@ -1,0 +1,49 @@
+body {
+	width: 960px;
+	margin: 15px auto;
+	font-family: Arial, sans-serif;
+	margin: 15px auto;
+}
+
+p {
+	margin: 0, 0, 20px, 0;
+}
+
+p,li {
+	line-height: 20px;
+}
+
+header#page_header {
+	width: 100%;
+}
+
+header#page_header nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+header#page_header nav ul li {
+	padding: 0;
+	margin: 0, 20px, 0, 0;
+	display: inline;
+}
+
+footer#page_footer {
+	clear: both;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+
+section#lesson {
+	clear: both;
+	float: left;
+	width: 75%;
+}
+
+section#help {
+	float: right;
+	width: 25%;
+}
+
