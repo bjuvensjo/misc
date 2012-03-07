@@ -10,6 +10,5 @@ var UC002 = (function(uc) {
             getAccounts : uc.modelImpl.getAccounts
         };
     };
-
     return uc;
 }(UC002 || {}));

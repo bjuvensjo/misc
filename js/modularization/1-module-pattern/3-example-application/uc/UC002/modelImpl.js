@@ -13,6 +13,5 @@ var UC002 = (function(uc) {
             }           
         };
      }());
-    
     return uc;
 }(UC002 || {}));
