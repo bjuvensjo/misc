@@ -1,8 +1,8 @@
 define([], function() {
 
-    // ctx, x, y, r, color
+    // ctx, x, y, r, vector2d, color
     return function(params) {
-        var ctx = params.ctx, x = params.x, y = params.y, r = params.r, color = params.color;
+        var ctx = params.ctx, x = params.x, y = params.y, r = params.r, vector2d = params.vector2d, color = params.color;
         return {
             draw : function() {
                 ctx.fillStyle = color;
@@ -11,10 +11,10 @@ define([], function() {
                 ctx.closePath();
                 ctx.fill();
             },
-            move : function(newX, newY) {
+            move : function() {
                 ctx.clearRect(x - r, y - r, 2 * r, 2 * r);
-                x = newX;
-                y = newY;
+                x += vector2d.getVx();
+                y += vector2d.getVy();
                 this.draw();
             },
             getX : function() {
@@ -25,7 +25,10 @@ define([], function() {
             },
             getR : function() {
                 return r;
-            }
+            },
+            getVector2d : function() {
+				return vector2d;
+			}
         };
     };
 });

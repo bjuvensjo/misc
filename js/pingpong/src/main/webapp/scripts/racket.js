@@ -1,24 +1,34 @@
 define([], function() {
 
-    // ctx, x, y, w, h, color
+    // ctx, x, y, w, h, vector2d, color
     return function(params) {
+    	var ctx = params.ctx, x = params.x, y = params.y, w = params.w, h = params.h, vector2d = params.vector2d, color = params.color;
         return {
-            ctx : params.ctx,
-            x : params.x,
-            y : params.y,
-            w : params.w,
-            h : params.h,
-            color : params.color,
             draw : function() {
-                this.ctx.fillStyle = this.color;
-                this.ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, w, h);
             },
-            move : function(x, y) {
-                this.ctx.clearRect(this.x, this.y, this.w, this.h);
-                this.x = x;
-                this.y = y;
+            move : function() {
+                ctx.clearRect(x, y, w, h);
+                x += vector2d.getVx();
+                y += vector2d.getVy();
                 this.draw();
-            }
+            },
+            getX : function() {
+                return x;
+            },
+            getY : function() {
+                return y;
+            },
+            getW : function() {
+                return w;
+            },
+            getH : function() {
+                return h;
+            },
+            getVector2d : function() {
+				return vector2d;
+			}
         };
     };
 });
