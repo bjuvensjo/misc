@@ -12,10 +12,10 @@ define([], function() {
                 ctx.fill();
             },
             move : function() {
-                ctx.clearRect(x - r, y - r, 2 * r, 2 * r);
+                //ctx.clearRect(x - r, y - r, 2 * r, 2 * r);
                 x += vector2d.getVx();
                 y += vector2d.getVy();
-                this.draw();
+                //this.draw();
             },
             getX : function() {
                 return x;

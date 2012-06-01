@@ -9,10 +9,10 @@ define([], function() {
                 ctx.fillRect(x, y, w, h);
             },
             move : function() {
-                ctx.clearRect(x, y, w, h);
+                //ctx.clearRect(x, y, w, h);
                 x += vector2d.getVx();
                 y += vector2d.getVy();
-                this.draw();
+                //this.draw();
             },
             getX : function() {
                 return x;
