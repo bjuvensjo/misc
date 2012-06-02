@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>pingpong</title>
-	<script src="scripts/require.js"></script>
-	<script>
-	    require({
-	        baseUrl : 'scripts',
-	        priority : [ 'scripts/jquery-1.7.2.js' ]
-	    }, [ 'main' ]);
-	</script>	
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<style type="text/css">
-		body {
-			background-color: #806F76;
-		}
-	</style>
+<title>pingpong</title>
+<script src="scripts/require.js"></script>
+<script>
+	require({
+		baseUrl : 'scripts',
+		priority : [ 'scripts/jquery-1.7.2.js' ]
+	}, [ 'main' ]);
+</script>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body {
+	background-color: #806F76;
+}
+</style>
 </head>
 <body>
-	<canvas id="mycanvas" width="400" height="400">
+	<h1>Ping Pong</h1>
+	<div id="points">
+		<table>
+			<tr>
+				<td>Current score</td><td id="currentScore">0</td>
+			</tr>
+			<tr>
+				<td>High score</td><td id="highScore">0</td>
+			</tr>
+		</table>
+	</div>
+	<canvas id="game" width="400" height="400">
 		Fallback content
 	</canvas>
+	<div id="instructions">
+		<table>
+			<tr>
+				<td>serve</td><td>s</td>
+			</tr>
+			<tr>
+				<td>move racket</td><td>left and right arrow</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
