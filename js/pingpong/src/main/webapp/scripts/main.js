@@ -50,8 +50,17 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
 
     setInterval(function() {
     	var theVector2d;
+    	//TODO Make criteria more precise!
     	if (theBall.getY() + theBall.getR() >= theRacket.getY() && (theBall.getX() < theRacket.getX() || theBall.getX() > theRacket.getX() + theRacket.getW())) {
     		console.log("looser");
+    		theBall = ball({
+    	        ctx : ctx,
+    	        x : width / 2,
+    	        y : 20,
+    	        r : 10,
+    	        vector2d : vector2d(3 - Math.floor((Math.random() * 7)), 10),
+    	        color : 'white'
+    	    });
     	}
     	
         if (theBall.getY() + theBall.getR() >= theRacket.getY() || theBall.getY() - theBall.getR() <= 0) {
