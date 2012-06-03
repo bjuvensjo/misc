@@ -24,7 +24,7 @@ define([], function() {
                 return Math.sqrt(vx * vx + vy * vy);
             },
             lengthSquared : function() {
-                return vx * vx + vy * vy
+                return vx * vx + vy * vy;   
             },
             normalize : function() {
                 var length = this.length();

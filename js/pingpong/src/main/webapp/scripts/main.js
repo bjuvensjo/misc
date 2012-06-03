@@ -19,7 +19,7 @@ require([ "jquery", "pingpong/court", "pingpong/racket", "pingpong/ball", "pingp
             vector2d : vector2d(30, 0),
             color : 'white'
         }),
-        theBall, lastRacketKeyCode = 39, currentScore = 0, highScore = 0, currentScoreElement = $('#currentScore'), highScoreElement = $('#highScore'), draw, serve;
+        theBall = null, lastRacketKeyCode = 39, currentScore = 0, highScore = 0, currentScoreElement = $('#currentScore'), highScoreElement = $('#highScore'), draw, serve;
 
         draw = function() {
             ctx.clearRect(0, 0, width, height);
@@ -49,7 +49,7 @@ require([ "jquery", "pingpong/court", "pingpong/racket", "pingpong/ball", "pingp
         });
 
         serve = function() {
-            var intervalId;
+            var intervalId = -1;
             theBall = ball({
                 ctx : ctx,
                 x : width / 2,
@@ -107,5 +107,5 @@ require([ "jquery", "pingpong/court", "pingpong/racket", "pingpong/ball", "pingp
                 }
                 draw();
             }, 30);
-        }
+        };
     });
