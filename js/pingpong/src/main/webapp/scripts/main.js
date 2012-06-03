@@ -19,12 +19,15 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
         color : 'white'
     }), 
     theBall,
+    lastRacketKeyCode = 39,
     currentScore = 0,
     highScore = 0,
     currentScoreElement = $('#currentScore'),
-    highScoreElement = $('#highScore');    
+    highScoreElement = $('#highScore'),
+    draw,
+    serve;    
     
-    var draw = function() {
+    draw = function() {
         ctx.clearRect(0, 0, width, height);
     	theCourt.draw();
     	theRacket.draw();
@@ -32,8 +35,8 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
     		theBall.draw();
     	}
 	}
+    draw();
 
-    var lastRacketKeyCode = 39;
     $(document).keydown(function(e) {
     	var keyCode = e.keyCode;
     	if (keyCode === 37 || keyCode === 39) {
@@ -51,7 +54,8 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
     	}
     });
     
-    var serve = function() {
+    serve = function() {
+    	var intervalId;
         theBall = ball({
             ctx : ctx,
             x : width / 2,
@@ -62,9 +66,8 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
         });
         currentScore = 0;
         currentScoreElement.html(currentScore);
-        var intervalId = setInterval(function() {
+        intervalId = setInterval(function() {
         	var theVector2d;        
-        	//TODO Make criteria more precise!
         	if (theBall.getY() + theBall.getR() >= theRacket.getY() && (theBall.getX() + theBall.getR() < theRacket.getX() || theBall.getX() - theBall.getR() > theRacket.getX() + theRacket.getW())) {
         		// racket missed ball
         		clearInterval(intervalId);
@@ -75,7 +78,7 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
         		theBall = null;
         	} else {
         		if (theBall.getY() + theBall.getR() >= theRacket.getY()) {
-        			// racket hits the ball
+        			// racket hits ball
                 	theVector2d = theBall.getVector2d();
                 	theVector2d.add(vector2d(0, - 2 * theVector2d.getVy()));
                 	if (theBall.getX() < theRacket.getX() + theRacket.getW() / 3) {
@@ -86,6 +89,10 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
                 		theVector2d.add(vector2d(1, 0));
                 	}
                 	currentScore++;
+                	if (currentScore % 5 === 0) {
+                		//increase ball speed
+                		theVector2d.add(vector2d(0, -1));
+                	}
                 	currentScoreElement.html(currentScore);
         		} else if (theBall.getY() - theBall.getR() <= 0) {
             		// ball hits top wall
@@ -101,7 +108,4 @@ require([ "jquery", "court", "racket", "ball", "vector2d"], function($, court, r
         	draw();
         }, 30);
     }
-
-    serve();
-
 });
