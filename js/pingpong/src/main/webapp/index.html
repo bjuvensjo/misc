@@ -2,11 +2,11 @@
 <html>
 <head>
 <title>pingpong</title>
-<script src="scripts/require.js"></script>
+<script src="scripts/external/require.js"></script>
 <script>
 	require({
 		baseUrl : 'scripts',
-		priority : [ 'scripts/jquery-1.7.2.js' ]
+		priority : [ 'scripts/external/jquery-1.7.2.js' ]
 	}, [ 'main' ]);
 </script>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -17,7 +17,6 @@ body {
 </style>
 </head>
 <body>
-	<h1>Ping Pong</h1>
 	<div id="points">
 		<table>
 			<tr>
