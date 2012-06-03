@@ -94,6 +94,10 @@ require([ "jquery", "pingpong/court", "pingpong/racket", "pingpong/ball", "pingp
                         // ball hits top wall
                         theVector2d = theBall.getVector2d();
                         theVector2d.add(vector2d(0, -2 * theVector2d.getVy()));
+                        if (theVector2d.getVx() === 0) {
+                            // add a vector to avoid never ending orthogonal bounces
+                            theVector2d.add(vector2d(1 - Math.floor((Math.random() * 3)), 0));
+                        }
                     } else if (theBall.getX() - theBall.getR() <= 0 || theBall.getX() + theBall.getR() >= width) {
                         // ball hits left or right wall
                         theVector2d = theBall.getVector2d();
