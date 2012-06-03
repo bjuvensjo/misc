@@ -25,8 +25,8 @@ define([], function() {
                 return r;
             },
             getVector2d : function() {
-				return vector2d;
-			}
+                return vector2d;
+            }
         };
     };
 });
