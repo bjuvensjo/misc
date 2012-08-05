@@ -1,8 +1,11 @@
 CACHE MANIFEST
-# 2010-06-18:v3
+# 2012-08-05:v3
 
 # Explicitly cached entries
 index.html
+favicon.ico
+iphone4-splash.png
+sudoku-apple-touch-icon.png
 css/app.css
 css/images/fire.jpeg
 css/images/gravel.jpeg
