@@ -253,13 +253,13 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
             $sudoku.sudoku('numbers');
             $sudoku.sudoku('clock');
             $sudoku.sudoku('start', false);
-            $('#loader').hide();  // hide it initially
             $('#new').click(function() {
             	$sudoku.sudoku('start', true);
             });
             $('#help').click(function() {
                 $sudoku.sudoku('help');
             });
+            $sudoku.show();
         });            
     };
     return View;

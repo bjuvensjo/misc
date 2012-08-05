@@ -5,6 +5,7 @@ body {
 }
 
 #sudoku {
+	display: none;
 	font-size: 20px;
 	margin: 0;
 	width: 311px;
@@ -16,6 +17,7 @@ body {
 }
 
 #loader {
+	display: none;
 	position: absolute;
 	top: 50%;
 	left: 50%;
