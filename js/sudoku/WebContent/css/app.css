@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
+	
 }
 
 #sudoku {
@@ -12,6 +13,19 @@ body {
 	-webkit-transition: width 2s, -webkit-transform 2s;
 	/* Safari and Chrome */
 	-o-transition: width 2s, -o-transform 2s; /* Opera */
+}
+
+#loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -23px;
+	margin-left: -23px;
+	z-index: 1000;
+	width: 46px;
+	height: 46px;
+	background: url('lib/images/ajax-loader.gif') no-repeat;
+	cursor: wait;
 }
 
 .sudoku-solved {
@@ -77,15 +91,15 @@ td {
 .error {
 	background-color: red;
 	background-image: url('images/fire.jpeg');
-	background-size: 100%;
-	//background-image: none;
+	background-size: 100%; //
+	background-image: none;
 }
-
 
 #new {
 	background-image: url('images/sand.jpeg');
 	margin: 3px;
 }
+
 #help {
 	background-image: url('images/sand.jpeg');
 	margin: 3px;

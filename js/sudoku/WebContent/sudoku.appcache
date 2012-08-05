@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2012-08-05:v3
+# 2012-08-05:v5
 
 # Explicitly cached entries
 index.html
@@ -12,6 +12,7 @@ css/images/gravel.jpeg
 css/images/sand.jpeg
 css/lib/jquery.mobile-1.1.0.min.css
 css/lib/images/ajax-loader.gif
+js/initializeWorker.js
 js/main.js
 js/lib/require/require.js
 

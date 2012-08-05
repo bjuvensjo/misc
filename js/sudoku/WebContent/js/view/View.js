@@ -150,67 +150,89 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                 },
                 start : function(createNew) {
                     var $square, $sudoku, modelIndex, notes, squareNotes, sudoku, value;
-                    that.model.initialize(createNew);
-                    sudoku = that.model.getSudoku();
-                    notes = that.model.getNotes();
                     $sudoku = this;
-                    if (sudoku) {
-                        $.each($('.square'), function(index, html) {
-                            $square = $(html);
-                            modelIndex = parseInt($square.attr('id'));
-                            value = sudoku[modelIndex];
-                            $square.off('click');
-                            if (value === 0) {
-                                $square.click(function(e) {
-                                	writeNumber.call(e.target, $sudoku);
-    							});
-                                $square.removeClass('model-value');
-                                squareNotes = notes[modelIndex];
-                                if (squareNotes) {
-                                	value = formatNotes(squareNotes);
-                                	$square.addClass('notes');
+                    // TODO Refactor!
+                    var updateSudoku = function() {
+                        sudoku = that.model.getSudoku();
+                        notes = that.model.getNotes();
+                        if (sudoku) {
+                            $.each($('.square'), function(index, html) {
+                                $square = $(html);
+                                modelIndex = parseInt($square.attr('id'));
+                                value = sudoku[modelIndex];
+                                $square.off('click');
+                                if (value === 0) {
+                                    $square.click(function(e) {
+                                    	writeNumber.call(e.target, $sudoku);
+        							});
+                                    $square.removeClass('model-value');
+                                    squareNotes = notes[modelIndex];
+                                    if (squareNotes) {
+                                    	value = formatNotes(squareNotes);
+                                    	$square.addClass('notes');
+                                    } else {
+                                    	value = '&nbsp;';
+                                    }
                                 } else {
-                                	value = '&nbsp;';
+                                    $square.removeClass('notes');
+                                    $square.addClass('model-value');
                                 }
-                            } else {
-                                $square.removeClass('notes');
-                                $square.addClass('model-value');
+                                $square.html(value);
+                            });   
+                            that.clock.start(createNew);
+                            // TODO Move below to appropriate place...
+                            if (clockInterval) {
+                            	clearInterval(clockInterval);
                             }
-                            $square.html(value);
-                        });   
-                        that.clock.start(createNew);
-                        // TODO Move below to appropriate place...
-                        if (clockInterval) {
-                        	clearInterval(clockInterval);
+                            var updateClock = function() {
+                            	var s, time;
+                            	s = '';
+                            	that.clock.update();
+                            	time = that.clock.getTime();
+                            	if (time.hours < 10) {
+                            		s += '0';
+                            	}
+                            	s += time.hours;
+                            	s += ':';
+                            	if (time.minutes < 10) {
+                            		s += '0';
+                            	}
+                            	s += time.minutes;
+                            	s += ':';
+                            	if (time.seconds < 10) {
+                            		s += '0';
+                            	}
+                            	s += time.seconds;
+                            	$('#clock').html(s);
+            				};
+            				updateClock();
+            				clockInterval = setInterval(function() {
+            					updateClock();
+            				}, 1000);       
+                            
                         }
-                        var updateClock = function() {
-                        	var s, time;
-                        	s = '';
-                        	that.clock.update();
-                        	time = that.clock.getTime();
-                        	if (time.hours < 10) {
-                        		s += '0';
-                        	}
-                        	s += time.hours;
-                        	s += ':';
-                        	if (time.minutes < 10) {
-                        		s += '0';
-                        	}
-                        	s += time.minutes;
-                        	s += ':';
-                        	if (time.seconds < 10) {
-                        		s += '0';
-                        	}
-                        	s += time.seconds;
-                        	$('#clock').html(s);
-        				};
-        				updateClock();
-        				clockInterval = setInterval(function() {
-        					updateClock();
-        				}, 1000);       
-                        
+                        $('#loader').hide();						
+                        $sudoku.removeClass('sudoku-solved');             			
+					};
+                    $('#loader').show();
+                    if (createNew) {
+                        var worker = new Worker('js/initializeWorker.js');
+                        // receive messages from web worker
+                		worker.onmessage = function(e) {
+                            //that.model.initialize(createNew);
+                			that.model.cells = e.data.cells;
+                			that.model.notes = e.data.notes;
+                			that.model.remaining = e.data.remaining;
+                			that.model.sudoku = e.data.sudoku;
+                			that.model.save();
+                			updateSudoku();
+                		};            
+                		// send message to web worker
+                		worker.postMessage(createNew ? 'new' : null);                    	
+                    } else {
+                    	that.model.load();
+                    	updateSudoku();
                     }
-    				$sudoku.removeClass('sudoku-solved');                    	
                 }                
             };
 
@@ -231,8 +253,9 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
             $sudoku.sudoku('numbers');
             $sudoku.sudoku('clock');
             $sudoku.sudoku('start', false);
+            $('#loader').hide();  // hide it initially
             $('#new').click(function() {
-                $sudoku.sudoku('start', true);
+            	$sudoku.sudoku('start', true);
             });
             $('#help').click(function() {
                 $sudoku.sudoku('help');

@@ -27,6 +27,7 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
             //var time = new Date().getTime();
             this.sudoku = generator.generateSudoku(this.cells);
             //time = new Date().getTime() - time;
+            //console.log('time: ' + time + ' ms.');   
             this.notes = [];
             this.notes.length = 81;
             this.remaining = 0;
@@ -35,25 +36,10 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
     				this.remaining++;
     			}
     		}
-            this.save();            		
+            //this.save();            		
     	} else {
-    		this.load();
+    		//this.load();
     	}
-        
-        /*
-        var s, i;
-        s= '';
-        for (i = 0; i < this.cells.length; i++) {
-            if (i > 0 && i % 9 === 0) {
-                s = s + '\n';
-                //s = s + '<br>';
-            }
-            s = s + this.cells[i];
-            s = s + ' ';
-        }
-        */
-        //console.log(s);
-        //console.log('time: ' + time + ' ms.');   
     };
     Model.prototype.isSolved = function() {
         return this.remaining === 0;
