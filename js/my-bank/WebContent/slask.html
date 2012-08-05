@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>	
+</head>
+<body style="padding: 100px;">
+	<div id="x"></div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript">
+        (function($) {
+            var $x = $('#x'), xIndex = -1, yIndex = 0, swapImage;
+            $x.css({
+                padding : '0px',
+                border : '0px',
+                margin : '0px',
+                position : 'absolute',
+                backgroundImage : 'url(social-sprite.png)', // each image is 23x23px;
+                backgroundRepeat : 'no-repeat',
+                //backgroundColor : 'lime',
+                backgroundPosition : '-1px -0px',
+                width : '22px',
+                height : '23px'
+            });
+            
+            swapImage = function() {
+                console.log('swapImage');
+                //yIndex = yIndex === 0 ? -24 : 0;
+                xIndex = xIndex === -1 ? -49 : -1;
+                console.log(xIndex + 'px ' + yIndex + 'px');
+                $x.css({
+                    backgroundPosition : xIndex + 'px ' + yIndex + 'px'
+                });
+            }            
+            setInterval(swapImage,1000);
+        }(jQuery));
+        console.dir(jQuery);
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="accordion" id="loanAccordion">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#loanAccordion" href="#loanCollapse"><i id="icon-loanCollapse" class="icon-chevron-down"></i> <%= bundle.loan %></a>
+		</div>
+		<div id="loanCollapse" class="accordion-body collapse in">
+			<div class="accordion-inner">
+				<table class="table table-striped table-condensed" style="margin: 0px;">						
+					<tbody>
+						<% _.each(loans, function(loan, index){ %>
+						<tr>
+							<td><%= loan.get('name') %><br/><%= format.account(loan.get('id')) %></td>
+							<td><span class="pull-right"><%= format.currency(loan.get('balance')) %></span></td>
+						</tr>
+						<% }); %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="chart"></div>

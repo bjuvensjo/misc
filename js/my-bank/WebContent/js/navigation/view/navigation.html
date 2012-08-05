@@ -1,0 +1,26 @@
+<div id="fragment-navigation">
+	<div class="row-fluid">
+		<div class="navbar">
+			<div class="navbar-inner" style="padding-left:0px;padding-right:0px;">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="brand visible-desktop" href="#">My Bank</a>
+					<a id="back" class="btn btn-inverse hidden-desktop" style="float: left; padding-bottom:1px;" href="#"><i class="icon-arrow-left icon-white"></i></a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<% _.each(navigations, function(navigation) { %>
+							<li><a href="<%= navigation.get('aref') %>"><i class="<%= navigation.get('iconClass') %>"></i> <%= navigation.get('text') %></a></li> <% }); %>
+							<!-- <li class="divider-vertical"></li> -->
+						</ul>
+					</div>
+					<!-- 				<div class="visible-desktop pull-right">
+					<p class="navbar-text"><%= bundle.welcome %> Krösus</p>
+				</div>
+ -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

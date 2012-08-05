@@ -1,0 +1,25 @@
+<div class="accordion" id="transferAccordion">
+	<% _.each(froms, function(from, index){ %>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#transferAccordion" href="#transferCollapse<%= index %>"><i id="icon-transferCollapse<%= index %>" class="<%= index ? 'icon-chevron-right' : 'icon-chevron-down' %>"></i> <%= bundle.from %> <%= from[0].get('from').name %> </a>
+		</div>
+		<div id="transferCollapse<%= index %>" class="accordion-body collapse <%= index ? '' : 'in' %>">
+			<div class="accordion-inner">
+				<table class="table table-striped table-condensed" style="margin: 0px;">					
+					<tbody>
+						<% _.each(from, function(transfer, index){ 
+							var date = new Date(transfer.get('date'));
+						%>
+						<tr>
+							<td><%= transfer.get('to').name %><br/><%= format.date(date) %></td>
+							<td><span class="pull-right"><%= format.currency(transfer.get('amount')) %></span></td>
+						</tr>
+						<% }); %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<% }); %>
+</div>

@@ -1,0 +1,41 @@
+* Check out chaplin (framework on top of backbone)
+* i18n (iLib?)
+* clean up of dependencies
+* fix active in navigation
+* sum of tranfers in header bar
+* examplify invisible information must not be fetched...
+* sales carousel with images (responsive)
+* only sales in sidebar-left and thus made invisible on small devices
+* move html of sidebars from index (use require)
+* examplify context sensitive help
+* examplify account open
+* examplify personalization (client-side storage?)
+* redesign overview
+* create only one accountCollection and loanCollection (account and loan vs. overview)
+* optimize transfer representation to reference accounts?!
+* controller?
+* use r.js etc
+* structure less as lib
+* more of lazy loading
+* read http://dojo-toolkit.33424.n3.nabble.com/AMD-define-or-require-td3621473.html
+* datejs?
+* read about Backbone.history.start({pushState: true})
+* do something with social-sprite :)...
+* consider HTML cache manifest (my-bank.appcache)
+* Tool for remove of unused css styles
+
+
+
+**************************************************
+********************** DONE **********************
+**************************************************
+* examplify account
+* examplify loan
+* examplify reload and not reload from navigation (transfer and account vs. loan)
+* examplify parallel loading on overview
+* examplify overview with reuse of account and loan
+* examplify highcharts
+* move "style" from list templates
+* i18n (bundle and format)
+* read http://lostechies.com/derickbailey/2011/08/03/stop-using-backbone-as-if-it-were-a-stateless-web-server/
+ 

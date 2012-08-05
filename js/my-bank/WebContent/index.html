@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- <html manifest="my-bank.appcache" lang="en">
+ -->
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>My Bank</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Magnus Bjuvensjö">
+<!-- If a user has added your web application to their spring board, the following meta tag can remove the top bar from the browser -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<link href="css/app.css" rel="stylesheet">
+
+<!-- Make below AMD... -->
+<!--  
+<script src="js/lib/shake.js"></script>
+<script src="js/shake.js"></script>
+-->
+
+<!-- 
+   <link rel="shortcut icon" href="assets/ico/favicon.ico">
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+   <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+ -->
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id="menu" class="span12"></div>
+		</div>
+		<div class="row-fluid">
+			<div id="sidebar-left" class="span3 visible-desktop">
+				<div class="well">
+					<h4 class="lead">Household Budget online<br/>- Smart, easy and free</h4>
+					<p>No more complicated financial programs or boring budget templates in excel!</p>
+					<p>With SmartBudget you will quickly and easily get an overview on your finances and where your money goes each month. Keep track of your income, expenses and your
+					savings. With a household budget, you can plan your finances better!</p>
+					<p>Once you started your budget you can quickly and easily using the cash book and bank
+					imports follow up and see if you follow your budget.</p>
+					<p><a href="#/account">Read more</a></p>
+					<!-- Hushållsbudget online
+Sätt igång med din budget idag
+- Smart, enkelt och gratis
+
+Aldrig mer krångliga budgetprogram eller tråkiga budgetmallar i excel!
+
+Med Smartbudget får du snabbt och enkelt en översikt på din ekonomi och vart dina pengar tar vägen varje månad. Håll koll på dina inkomster, utgifter och ditt sparande. Med en hushållsbudget kan du planera din ekonomi bättre!
+
+När du kommit igång med din budget så kan du snabbt och enkelt med hjälp av kassaboken och bankimporten följa upp och se om du följer din budget.
+					 -->
+				</div>
+			</div>
+			<div id="page" class="span6">Loading...</div>
+			<div id="sidebar-right" class="span3">
+				<div class="well">
+					<h4>Warning</h4>
+					<p>Best check yo self, you're not...</p>
+				</div>
+				<div class="well">
+					<h4>Contact</h4>
+					<div class="input-append">
+						<input class="span6" id="appendedInputButtons" size="12" type="text">
+						<button class="btn btn-primary" type="button">
+							<i class="icon-headphones icon-white"></i> Call
+						</button>
+					</div>
+				</div>
+				<div class="well">
+					<h4>
+						<i class="icon-info-sign"></i> Help
+					</h4>
+					<dl>
+						<dt>Description lists</dt>
+						<dd>A description list is perfect for defining terms.</dd>
+						<dt>Euismod</dt>
+						<dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+						<dt>Malesuada porta</dt>
+						<dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script data-main="js/main" src="js/lib/require/require.js"></script>
+
+	<!-- Hide the Address Bar within Mobile Web Applications -->
+	<!-- Redesign and move from here!!!!! -->
+	<script type="text/javascript">
+        // When ready...
+        window.addEventListener("load", function() {
+            // Set a timeout...
+            setTimeout(function() {
+                // Hide the address bar!
+                window.scrollTo(0, 1);
+            }, 0);
+        });
+    </script>
+</body>
+</html>
