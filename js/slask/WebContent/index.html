@@ -20,42 +20,31 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="css/style.css?v=2">
 <script src="js/libs/jquery-1.7.2.min.js"></script>
-<script src="js/libs/ember-0.9.8.1.min.js"></script>
+<script src="js/libs/ember-0.9.8.1.js"></script>
 <script src="js/app.js"></script>
 
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+<script type="text/x-handlebars" data-template-name="version">
+	version {{version}}
+</script>  
+<script type="text/x-handlebars" data-template-name="transfer">
+	<ul>
+		{{#each fromAccounts}}
+			<li>{{id}} {{balance}}</li>
+		{{/each}}
+	</ul>
+	<ul>
+		{{#each toAccounts}}
+			<li>{{id}} {{balance}}</li>
+		{{/each}}
+	</ul>
+</script>
+
 </head>
 <body>
-
-<script type="text/x-handlebars">
-{{#view App.FromAccountsView}}
-	<ul>
-		{{#each accounts}}
-			<li>{{id}} {{balance}}</li>
-		{{/each}}
-	</ul>
-{{/view}}
-</script>
-<script type="text/x-handlebars">
-{{#view App.ToAccountsView}}
-	<ul>
-		{{#each accounts}}
-			<li>{{id}} {{balance}}</li>
-		{{/each}}
-	</ul>
-{{/view}}
-</script>
-<script type="text/x-handlebars">
-{{#view App.UnsignedTransfersView}}
-	<ul>
-		{{#each transfers}}
-			<li>{{from.id}} {{to.id}} {{amount}}</li>
-		{{/each}}
-	</ul>
-{{/view}}
-</script>
 
 </body>
 </html>

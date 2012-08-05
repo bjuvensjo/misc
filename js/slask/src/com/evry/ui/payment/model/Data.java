@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Data {
-	private List<Account> fromAccounts;
-	private List<Account> toAccounts;
-	private List<Transfer> unsignedTransfers;
+	public List<Account> fromAccounts;
+	public List<Account> toAccounts;
+	public List<Transfer> unsignedTransfers;
 	
 	public Data() {
 		super();
@@ -30,29 +30,5 @@ public class Data {
 		for (com.evry.service.payment.model.Transfer transfer : unsignedTransfers) {
 			this.unsignedTransfers.add(new Transfer(transfer));
 		}
-	}
-
-	public List<Account> getFromAccounts() {
-		return fromAccounts;
-	}
-
-	public void setFromAccounts(List<Account> fromAccounts) {
-		this.fromAccounts = fromAccounts;
-	}
-
-	public List<Account> getToAccounts() {
-		return toAccounts;
-	}
-
-	public void setToAccounts(List<Account> toAccounts) {
-		this.toAccounts = toAccounts;
-	}
-
-	public List<Transfer> getUnsignedTransfers() {
-		return unsignedTransfers;
-	}
-
-	public void setUnsignedTransfers(List<Transfer> unsignedTransfers) {
-		this.unsignedTransfers = unsignedTransfers;
 	}
 }
