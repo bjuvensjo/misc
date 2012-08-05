@@ -1,0 +1,33 @@
+<!doctype html>
+<!-- <html manifest="sudoku.appcache" lang="en"> -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone4.png" /> -->
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="sudoku-apple-touch-icon.png" />
+<link rel="stylesheet" href="css/lib/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="css/app.css" />
+<script data-main="js/main" src="js/lib/require/require.js"></script>
+<title>sudoku</title>
+</head>
+<body>
+	<div data-role="page">
+		<!-- 		<div data-role="header"> -->
+		<!-- 			<h1>My Title</h1> -->
+		<!-- 		</div> -->
+
+		<div data-role="content">
+			<div id="sudoku">
+				<div data-role="header" data-position="inline" data-theme="a">
+					<a id="new" class="button" href="#" data-theme="d">New</a>
+					<h1>Sudoku</h1>
+					<a id="help" class="button" href="#" data-theme="d">Help</a>
+				</div> 
+			</div>
+		</div>
+	</div>
+</body>
+</html>

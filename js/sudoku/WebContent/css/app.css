@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+body {
+}
+
+#sudoku {
+	font-size: 20px;
+	margin: 0;
+	width: 311px;
+	transition: width 2s;
+	-moz-transition: width 2s, -moz-transform 2s; /* Firefox 4 */
+	-webkit-transition: width 2s, -webkit-transform 2s;
+	/* Safari and Chrome */
+	-o-transition: width 2s, -o-transform 2s; /* Opera */
+}
+
+.sudoku-solved {
+	width: 311px;
+	transform: rotate(360deg);
+	-moz-transform: rotate(360deg); /* Firefox 4 */
+	-webkit-transform: rotate(360deg); /* Safari and Chrome */
+	-o-transform: rotate(360deg); /* Opera */
+}
+
+#clock {
+	text-align: right;
+	font-size: 70%;
+	margin-top: 5px;
+}
+
+table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border: 1px solid black;
+}
+
+td {
+	margin: 0;
+	border: 1px solid black;
+	padding: 0;
+	text-align: center;
+}
+
+.model-value {
+	color: black;
+}
+
+.notes {
+	font-size: 0.45em;
+	font-weight: bold;
+}
+
+.number {
+	padding: 3px;
+	background-image: url('images/sand.jpeg');
+}
+
+.notes-toggle {
+	background-color: black;
+	background-image: url('images/gravel.jpeg');
+	color: white;
+}
+
+.selected-number {
+	background-image: url('images/gravel.jpeg');
+	color: white;
+}
+
+.square {
+	width: 29px;
+	height: 29px;
+	padding: 1px;
+	background-image: url('images/sand.jpeg');
+}
+
+.error {
+	background-color: red;
+	background-image: url('images/fire.jpeg');
+	background-size: 100%;
+	//background-image: none;
+}
+
+
+#new {
+	background-image: url('images/sand.jpeg');
+	margin: 3px;
+}
+#help {
+	background-image: url('images/sand.jpeg');
+	margin: 3px;
+}
+
+.ui-content {
+	padding: 5px;
+}
+
+/* For 321px or more */
+@media screen and (min-width: 500px) {
+	body {
+		margin: 50px;
+		padding: 0;
+	}
+	#sudoku {
+		margin: 20px auto;
+		width: 460px;
+		font-size: 27px;
+	}
+	.square {
+		width: 45px;
+		height: 45px;
+		padding: 1px;
+	}
+}
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5) , only
+	screen and (min-device-pixel-ratio : 1.5) {
+}
