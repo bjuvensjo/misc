@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+	<div>Hello World!</div>
+	<script>
+        (function(d, s) {
+            var x = d.createElement(s), o = d.getElementsByTagName(s)[0];
+            console.dir(x);
+            console.dir(o);
+            x.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"; // your script here
+            x.async = true; // mostly optional
+            console.dir(o.parentNode);
+            console.dir(x);
+            o.parentNode.insertBefore(x, o); // inject
+            console.log(1);
+        })(document, 'script');
+    </script>
+	<script type="text/javascript">
+		window.onload = function() {
+		    console.log($);   
+        }
+        console.log(3);
+    </script>
+</body>
+</html>
