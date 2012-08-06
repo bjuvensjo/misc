@@ -14,13 +14,22 @@ require([ 'assert', '../generator', '../../util/validation' ], function(assert, 
     };
 
     test(function() {
-        var actual, cells, expected;
+        var actual, cells, expected, sudoku, time;
         assert('generate' in generator);
 
         // Test generate
+        time = new Date().getTime();
         cells = generator.generate();
+        time = new Date().getTime() - time;
+        console.log('time generate: ' + time);
         actual = validation.isAllValid(cells);
         expected = true;
         assert.strictEqual(actual, expected);
+        
+        time = new Date().getTime();
+        sudoku = generator.generateSudoku(cells);
+        //TODO Add some assertion(s) of sudoku 
+        time = new Date().getTime() - time;
+        console.log('time generateSudoku: ' + time);
     });
 });

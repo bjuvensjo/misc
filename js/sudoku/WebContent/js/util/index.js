@@ -31,7 +31,6 @@ define([], function() {
             rowIndex++;
         }
         return indexes;
-
     };    
     return new Index();    
 });

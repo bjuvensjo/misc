@@ -25,12 +25,12 @@ define([ '../util/index', '../util/validation', '../solver/Solver', '../solver/s
         var cells, generateCell;
         cells = [];
         generateCell = function(cells, index) {
-            var candidates, i, NB_OF_CELLS;
+            var candidates, i, numberOfCells;
             candidates = getRandomizedRange(1, 9);
-            NB_OF_CELLS = 81;
+            numberOfCells = 81;
             for (i = 0; i < candidates.length; i++) {
                 cells[index] = candidates[i];
-                if (validation.isValid(cells, index) && (index + 1 === NB_OF_CELLS || generateCell(cells, index + 1))) {
+                if (validation.isValid(cells, index) && (index + 1 === numberOfCells || generateCell(cells, index + 1))) {
                     return true;
                 }
             }
@@ -45,8 +45,6 @@ define([ '../util/index', '../util/validation', '../solver/Solver', '../solver/s
         sudoku = cells.slice(0);
         solver = new Solver([ completeStrategy, compellingStrategy, partnershipStrategy ]);
         indexes = getRandomizedRange(0, 80);
-        solvable = true;
-        //for (i = 0; solvable && i < indexes.length; i++) {
         for (i = 0; i < indexes.length; i++) {
             sudoku[indexes[i]] = 0;
             sudokuClone = sudoku.slice(0);
