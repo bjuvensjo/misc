@@ -8,9 +8,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 public class LoanDAO {
-    private static final String LOAN_JSON = "/slask/loan.json";
+    //private static final String LOAN_JSON = "/slask/loan.json";
+	private static final List<Loan> loans = new ArrayList<Loan>();
     static {
-        try {            
+        loans.add(new Loan("12345678901", "Bolån", 400000 + Math.random() * 1000000));
+        loans.add(new Loan("23456789012", "Billån", 100000 + Math.random() * 200000));
+        loans.add(new Loan("34567890123", "MC-lån", 30000 + Math.random() * 50000));
+        /*
+    	try {            
             List<Loan> loans = new ArrayList<Loan>();
             loans.add(new Loan("12345678901", "Bolån", 400000 + Math.random() * 1000000));
             loans.add(new Loan("23456789012", "Billån", 100000 + Math.random() * 200000));
@@ -20,9 +25,11 @@ public class LoanDAO {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
+        */
     }
 
     public List<Loan> findAll() {
+    	/*
         List<Loan> loans = null;
         // 2. Convert JSON to Java object
         try {
@@ -31,6 +38,7 @@ public class LoanDAO {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
+        */
         return loans;
     }
 

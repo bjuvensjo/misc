@@ -8,9 +8,16 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 public class AccountDAO {
-    private static final String ACCOUNT_JSON = "/slask/account.json";
+    //private static final String ACCOUNT_JSON = "/slask/account.json";
+    private static final List<Account> accounts = new ArrayList<Account>();
     static {
-        try {            
+        accounts.add(new Account("12345678901", "Privatkonto", Math.random() * 50000));
+        accounts.add(new Account("23456789012", "Lånekonto", Math.random() * 20000));
+        accounts.add(new Account("34567890123", "Räkningskonto", Math.random() * 50000));
+        accounts.add(new Account("45678901234", "Semesterkonto", Math.random() * 100000));
+        accounts.add(new Account("56789012345", "Sparkonto", 100000 + (Math.random() * 1000000)));
+        /*
+    	try {            
             List<Account> accounts = new ArrayList<Account>();
             accounts.add(new Account("12345678901", "Privatkonto", Math.random() * 50000));
             accounts.add(new Account("23456789012", "Lånekonto", Math.random() * 20000));
@@ -22,9 +29,11 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
+        */
     }
 
     public List<Account> findAll() {
+    	/*
         List<Account> accounts = null;
         // 2. Convert JSON to Java object
         try {
@@ -33,6 +42,7 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
+        */
         return accounts;
     }
 
