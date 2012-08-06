@@ -1,7 +1,7 @@
 ({
     appDir: "../",
     baseUrl: "js",
-    dir: "../../r-build",
+    dir: "../../war",
     paths: {
         //jquery: "empty:"
     },
