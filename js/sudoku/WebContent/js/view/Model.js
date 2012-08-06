@@ -20,33 +20,24 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
     Model.prototype.getSudoku = function() {
         return this.sudoku;
     };
-    Model.prototype.initialize = function(createNew) {
+    Model.prototype.initialize = function() {
     	var i;
-    	if (createNew) {
-            this.cells = generator.generate();
-            //var time = new Date().getTime();
-            this.sudoku = generator.generateSudoku(this.cells);
-            //time = new Date().getTime() - time;
-            //console.log('time: ' + time + ' ms.');   
-            this.notes = [];
-            this.notes.length = 81;
-            this.remaining = 0;
-            for (i = 0; i < this.sudoku.length; i++) {
-    			if (this.sudoku[i] === 0) {
-    				this.remaining++;
-    			}
-    		}
-            //this.save();            		
-    	} else {
-    		//this.load();
-    	}
+        this.cells = generator.generate();
+        this.sudoku = generator.generateSudoku(this.cells);
+        this.notes = [];
+        this.notes.length = 81;
+        this.remaining = 0;
+        for (i = 0; i < this.sudoku.length; i++) {
+			if (this.sudoku[i] === 0) {
+				this.remaining++;
+			}
+		}
     };
     Model.prototype.isSolved = function() {
         return this.remaining === 0;
     };     
     Model.prototype.createNotes = function() {
         this.notes = new Notes(this.sudoku).getAllValues();
-        this.save();
         return this.notes;
     }; 
     Model.prototype.removeNotes = function(index, value) {
@@ -63,7 +54,6 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
                 }
             }
         }
-        this.save();
         return indexes;
     }; 
     Model.prototype.load = function() {
@@ -102,7 +92,6 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
                 set.add(note);
             }
         }
-        this.save();
         return set;
     };
     Model.prototype.updateSudoku = function(index, value) {
@@ -111,7 +100,6 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         } else {
             this.sudoku[index] = value;
             this.remaining--;
-            this.save();
             return true;
         }
     };

@@ -5,9 +5,8 @@ self.onmessage = function(e) {
 	    },
 	    ['view/Model'],
 	    function(Model) {
-	    	var createNew, model = new Model();
-	    	createNew = e.data === 'new'; 
-	    	model.initialize(createNew);
+	    	var model = new Model();
+	    	model.initialize();
 	        self.postMessage(model);
 	    }
 	);	

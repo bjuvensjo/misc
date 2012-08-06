@@ -46,13 +46,16 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                             $this.addClass('notes');
                         }
                         set = that.model.updateNote(modelIndex, selectedNumber);
+                        that.model.save();
                         $this.html(formatNotes(set));
                     } else {
                         if (that.model.updateSudoku(modelIndex, selectedNumber)) {
+                        	that.model.save();
                             $this.off('click');
                             $this.removeClass('notes');
                             $this.html(selectedNumber);
                             modelIndexes = that.model.removeNotes(modelIndex, selectedNumber);
+                            that.model.save();
                             for (i = 0; i < modelIndexes.length; i++) {
                                 $modelIndex = $('#' + modelIndexes[i]); 
                                 if ($modelIndex.hasClass('notes')) {
@@ -120,6 +123,7 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                 help : function() {
                     var $square, modelIndex, notes, value;
                     notes = that.model.createNotes();
+                    that.model.save();
                     $.each($('.square'), function(index, html) {
                         $square = $(html);
                         modelIndex = parseInt($square.attr('id'));
@@ -219,7 +223,6 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                         var worker = new Worker('js/initializeWorker.js');
                         // receive messages from web worker
                 		worker.onmessage = function(e) {
-                            //that.model.initialize(createNew);
                 			that.model.cells = e.data.cells;
                 			that.model.notes = e.data.notes;
                 			that.model.remaining = e.data.remaining;
@@ -228,7 +231,7 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                 			updateSudoku();
                 		};            
                 		// send message to web worker
-                		worker.postMessage(createNew ? 'new' : null);                    	
+                		worker.postMessage('createNew');                    	
                     } else {
                     	that.model.load();
                     	updateSudoku();
