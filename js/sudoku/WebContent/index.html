@@ -8,24 +8,32 @@
 <!-- <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-iphone4.png" /> -->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="sudoku-apple-touch-icon.png" />
-<link rel="stylesheet" href="css/lib/jquery.mobile-1.1.0.min.css" />
 <link rel="stylesheet" href="css/app.css" />
 <link rel="apple-touch-startup-image" href="iphone4-splash.png" />
 <script data-main="js/main" src="js/lib/require/require.js"></script>
 <title>sudoku</title>
 </head>
 <body>
-	<div data-role="page">
-		<div data-role="content">
-			<div id="sudoku">
-				<div data-role="header" data-position="inline" data-theme="a">
-					<a id="new" class="button" href="#" data-theme="d">New</a>
-					<h1>Sudoku</h1>
-					<a id="help" class="button" href="#" data-theme="d">Help</a>
-				</div> 
+<div class="row-fluid">
+  <div class="span12">
+	<div id="sudoku">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					<span class="brand">Sudoku</span>
+					<span class="pull-right"> 
+						<span id="clock"></span>
+						<a id="settings" class="btn" href="#"><i class="icon-cog"></i></a>
+						<a id="help" class="btn" href="#">Help</a>
+						<a id="new" class="btn" href="#">New</a>
+					</span>
+				</div>
 			</div>
 		</div>
 		<div id="loader"></div>
 	</div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,149 @@
+@import "lib/bootstrap/less/bootstrap.less";
+
+body {
+	background-color: black;
+}
+
+#loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -23px;
+  margin-left: -23px;
+  z-index: 1000;
+  width: 46px;
+  height: 46px;
+  background: url('images/ajax-loader.gif') no-repeat;
+  cursor: wait;
+}
+#sudoku {
+  display: none;
+  font-size: 20px;
+  margin: 0;
+  width: 320px;
+  transition: width 2s;
+  -moz-transition: width 2s, -moz-transform 2s;
+  /* Firefox 4 */
+
+  -webkit-transition: width 2s, -webkit-transform 2s;
+  /* Safari and Chrome */
+
+  -o-transition: width 2s, -o-transform 2s;
+  /* Opera */
+
+}
+.sudoku-solved {
+  width: 320px;
+  transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  /* Firefox 4 */
+
+  -webkit-transform: rotate(360deg);
+  /* Safari and Chrome */
+
+  -o-transform: rotate(360deg);
+  /* Opera */
+
+}
+#clock {
+  text-align: right;
+  font-size: 70%;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid black;
+}
+td {
+  margin: 0;
+  border: 1px solid black;
+  padding: 0;
+  text-align: center;
+}
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-inner {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border-radius: 0;
+}
+.notes {
+  font-size: 0.60em;
+  font-weight: bold;
+  line-height: 0.9em;
+}
+.navbar .number {
+	margin: 0;
+	float: left;
+	font-size: 1em;
+	padding: 0.4em;
+	background-image: url('images/sand.jpeg');
+	border: solid thin black;
+}
+.navbar .notes-toggle {
+  background-color: black;
+  background-image: url('images/gravel.jpeg');
+  color: white;
+}
+.navbar .selected-number {
+  background-image: url('images/gravel.jpeg');
+  color: white;
+}
+.square {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  background-image: url('images/sand.jpeg');
+}
+.error {
+  background-color: red;
+  background-image: url('images/fire.jpeg');
+  background-size: 100%;
+}
+#new {
+  background-image: url('images/sand.jpeg');
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#help {
+  background-image: url('images/sand.jpeg');
+  margin-left: 0px;
+  margin-right: 0px;
+}
+#settings {
+  background-image: url('images/sand.jpeg');
+  margin-left: 0px;
+  margin-right: 0px;
+}
+/* For 321px or more */
+@media screen and (min-width: 500px) {
+  body {
+    margin: 50px;
+    padding: 0;
+    background-color: white;
+  }
+  #sudoku {
+    margin: 20px auto;
+    width: 460px;
+    font-size: 27px;
+  }
+  .square {
+    width: 45px;
+    height: 45px;
+    padding: 1px;
+  }
+  .navbar-inner {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  
+}

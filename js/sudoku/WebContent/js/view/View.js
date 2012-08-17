@@ -1,4 +1,4 @@
-define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, Clock, Model) {
+define(['jquery', './Clock', './Model'], function($, Clock, Model) {
     //console.dir($mobile);
 	//console.dir($ui);
     var View = null;
@@ -137,6 +137,24 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                     });
                 },                
                 numbers : function() {
+                	var number, $navbar, $navbarInner, $container, $a;
+                	$navbar = $('<div class="navbar"></div>');
+                	$navbarInner = $('<div class="navbar-inner"></div>');
+                	$container = $('<div class="container"></div>');
+                    $navbar.append($navbarInner);
+                    $navbarInner.append($container);
+                    for (number = 1; number < 10; number++) {
+                    	$a = $('<a class="btn number" href="#">' + number + '</a>');
+                    	$container.append($a);
+                        $a.click(selectNumber);
+                    }
+                    $a = $('<a class="btn number" style="float:right;" href="#">' + 'V' + '</a>');
+                    $container.append($a);
+                    $a.click(toggleNumberNotes);
+                    this.append($navbar);
+                    return this;                	
+                	
+                	/*
                     var number, $table, $tr, $td;
                     $table = $('<table style="margin-top: 5px;"></table>');
                     $tr = $('<tr></tr>');
@@ -151,6 +169,7 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
                     $td.click(toggleNumberNotes);
                     this.append($table);
                     return this;
+                    */
                 },
                 start : function(createNew) {
                     var $square, $sudoku, modelIndex, notes, squareNotes, sudoku, value;
@@ -254,7 +273,7 @@ define(['jquery', 'jquery-mobile', './Clock', './Model'], function($, $mobile, C
             var $sudoku = $('#sudoku');
             $sudoku.sudoku();            
             $sudoku.sudoku('numbers');
-            $sudoku.sudoku('clock');
+            //$sudoku.sudoku('clock');
             $sudoku.sudoku('start', false);
             $('#new').click(function() {
             	$sudoku.sudoku('start', true);
