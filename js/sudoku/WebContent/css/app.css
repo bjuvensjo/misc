@@ -4259,6 +4259,14 @@ td {
   padding: 0;
   text-align: center;
 }
+.btn:hover {
+  background-position: 0 0px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: background-position 0 linear;
+  transition: none;
+}
 .navbar {
   margin-bottom: 0;
 }
@@ -4322,7 +4330,6 @@ td {
   body {
     margin: 50px;
     padding: 0;
-    background-color: white;
   }
   #sudoku {
     margin: 20px auto;
@@ -4333,10 +4340,6 @@ td {
     width: 45px;
     height: 45px;
     padding: 1px;
-  }
-  .navbar-inner {
-    padding-right: 20px;
-    padding-left: 20px;
   }
 }
 /* iPhone 4 ----------- */

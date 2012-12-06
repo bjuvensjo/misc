@@ -1,8 +1,9 @@
 requirejs.config({
     //baseUrl: ".",
     paths: {
-        'jquery': 'lib/jquery/jquery',
-        'jquery-mobile': 'lib/jquery/jquery-mobile'
+        'jquery': 'lib/jquery/jquery'
+        //,
+        //'jquery-mobile': 'lib/jquery/jquery-mobile'
     }
 });
 
