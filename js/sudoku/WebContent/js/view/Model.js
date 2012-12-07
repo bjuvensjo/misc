@@ -9,8 +9,12 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         this.sudoku = null;
         this.notes = null;
         this.remaining = -1;
+        this.errors = -1;
         this.persistence = new Persistence();
     };
+    Model.prototype.getErrors = function() {
+        return this.errors;
+    };  
     Model.prototype.getNotes = function() {
         return this.notes;
     };  
@@ -27,6 +31,7 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         this.notes = [];
         this.notes.length = 81;
         this.remaining = 0;
+        this.errors = 0;
         for (i = 0; i < this.sudoku.length; i++) {
 			if (this.sudoku[i] === 0) {
 				this.remaining++;
@@ -73,6 +78,7 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
     			}
 			}
     		this.remaining = model.remaining;
+    		this.errors = model.errors | 0;
     	}
     };    
     Model.prototype.save = function() {
@@ -96,6 +102,7 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
     };
     Model.prototype.updateSudoku = function(index, value) {
         if (value !== this.cells[index]) {
+        	this.errors++;
             return false;
         } else {
             this.sudoku[index] = value;
