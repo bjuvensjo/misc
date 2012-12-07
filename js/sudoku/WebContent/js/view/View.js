@@ -49,8 +49,7 @@ define(['jquery', './Clock', './Model'], function($, Clock, Model) {
                         that.model.save();
                         $this.html(formatNotes(set));
                     } else {
-                        if (that.model.updateSudoku(modelIndex, selectedNumber)) {
-                        	that.model.save();
+                        if (that.model.updateSudoku(modelIndex, selectedNumber)) {                        
                             $this.off('click');
                             $this.removeClass('notes');
                             $this.html(selectedNumber);
@@ -72,6 +71,8 @@ define(['jquery', './Clock', './Model'], function($, Clock, Model) {
                                 $this.removeClass('error');
                             }, 300);
                         }
+                        that.model.save();
+                        $('#errors').html(that.model.getErrors() || '');
                     }
                 }
             };
@@ -153,23 +154,6 @@ define(['jquery', './Clock', './Model'], function($, Clock, Model) {
                     $a.click(toggleNumberNotes);
                     this.append($navbar);
                     return this;                	
-                	
-                	/*
-                    var number, $table, $tr, $td;
-                    $table = $('<table style="margin-top: 5px;"></table>');
-                    $tr = $('<tr></tr>');
-                    $table.append($tr);
-                    for (number = 1; number < 10; number++) {
-                        $td = $('<td class="number">' + number + '</td>');
-                        $tr.append($td);
-                        $td.click(selectNumber);
-                    }
-                    $td = $('<td class="number">' + 'V' + '</td>');
-                    $tr.append($td);
-                    $td.click(toggleNumberNotes);
-                    this.append($table);
-                    return this;
-                    */
                 },
                 start : function(createNew) {
                     var $square, $sudoku, modelIndex, notes, squareNotes, sudoku, value;
@@ -232,29 +216,37 @@ define(['jquery', './Clock', './Model'], function($, Clock, Model) {
             				clockInterval = setInterval(function() {
             					updateClock();
             				}, 1000);       
-                            
                         }
                         $('#loader').hide();						
-                        $sudoku.removeClass('sudoku-solved');             			
+                        $sudoku.removeClass('sudoku-solved');         
+                        $('#errors').html(that.model.getErrors() || '');
 					};
                     $('#loader').show();
                     if (createNew) {
-                        var worker = new Worker('js/initializeWorker.js');
-                        // receive messages from web worker
-                		worker.onmessage = function(e) {
-                			that.model.cells = e.data.cells;
-                			that.model.notes = e.data.notes;
-                			that.model.remaining = e.data.remaining;
-                			that.model.sudoku = e.data.sudoku;
-                			that.model.save();
+                    	if (typeof(Worker) !== "undefined") {
+                            var worker = new Worker('js/initializeWorker.js');
+                            // receive messages from web worker
+                    		worker.onmessage = function(e) {
+                    			that.model.cells = e.data.cells;
+                    			that.model.errors = e.data.errors;
+                    			that.model.notes = e.data.notes;
+                    			that.model.remaining = e.data.remaining;
+                    			that.model.sudoku = e.data.sudoku;
+                    			that.model.save();
+                    			updateSudoku();
+                    		};            
+                    		// send message to web worker
+                    		worker.postMessage('createNew');                    	                    		
+                    	} else {
+                    		that.model = new Model();
+                    		that.model.initialize();
+                    		that.model.save();
                 			updateSudoku();
-                		};            
-                		// send message to web worker
-                		worker.postMessage('createNew');                    	
+                    	}
                     } else {
                     	that.model.load();
                     	updateSudoku();
-                    }
+                    }    				
                 }                
             };
 
