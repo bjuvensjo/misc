@@ -1,0 +1,1 @@
+Run this project via 'mvn compile exec:java' (modify arguments in pom.xml)
