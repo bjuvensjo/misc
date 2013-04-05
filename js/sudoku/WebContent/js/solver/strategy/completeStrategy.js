@@ -1,11 +1,11 @@
-define([], function() {
+define([], function () {
     var CompleteStrategy = null;
-    CompleteStrategy = function() {
+    CompleteStrategy = function () {
         if (!(this instanceof CompleteStrategy)) {
             return new CompleteStrategy();
         }
     };
-    CompleteStrategy.prototype.apply = function(cells, notes) {
+    CompleteStrategy.prototype.apply = function (cells, notes) {
         var i, value, updated;
         updated = [];
         for (i = 0; i < notes.getSize(); i++) {
@@ -18,7 +18,7 @@ define([], function() {
                 }
             }
         }
-        return updated;        
+        return updated;
     };
-    return new CompleteStrategy();    
+    return new CompleteStrategy();
 });

@@ -1,8 +1,8 @@
 define([ '../util/index', '../util/validation', '../solver/Solver', '../solver/strategy/compellingStrategy',
-        '../solver/strategy/completeStrategy', '../solver/strategy/partnershipStrategy' ], function(indexUtil, validation, Solver,
+        '../solver/strategy/completeStrategy', '../solver/strategy/partnershipStrategy' ], function (indexUtil, validation, Solver,
         compellingStrategy, completeStrategy, partnershipStrategy) {
     var Generator = null, getRandomizedRange;
-    getRandomizedRange = function(start, end) {
+    getRandomizedRange = function (start, end) {
         var randomizedRange, range, i;
         randomizedRange = [];
         range = [];
@@ -16,15 +16,15 @@ define([ '../util/index', '../util/validation', '../solver/Solver', '../solver/s
         }
         return randomizedRange;
     };
-    Generator = function() {
+    Generator = function () {
         if (!(this instanceof Generator)) {
             return new Generator();
         }
     };
-    Generator.prototype.generate = function() {
+    Generator.prototype.generate = function () {
         var cells, generateCell;
         cells = [];
-        generateCell = function(cells, index) {
+        generateCell = function (cells, index) {
             var candidates, i, numberOfCells;
             candidates = getRandomizedRange(1, 9);
             numberOfCells = 81;
@@ -40,7 +40,7 @@ define([ '../util/index', '../util/validation', '../solver/Solver', '../solver/s
         generateCell(cells, 0);
         return cells;
     };
-    Generator.prototype.generateSudoku = function(cells) {
+    Generator.prototype.generateSudoku = function (cells) {
         var i, indexes, solvable, solver, sudoku, sudokuClone;
         sudoku = cells.slice(0);
         solver = new Solver([ completeStrategy, compellingStrategy, partnershipStrategy ]);

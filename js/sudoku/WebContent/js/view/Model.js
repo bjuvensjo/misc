@@ -1,7 +1,8 @@
-define(['../generator/generator', '../util/index', '../solver/Notes', '../util/BitSet', '../util/Persistence'], function(generator, indexUtil, Notes, Set, Persistence) {
+define([ '../generator/generator', '../util/index', '../solver/Notes', '../util/BitSet', '../util/Persistence' ], function (generator,
+        indexUtil, Notes, Set, Persistence) {
     var Model = null;
-    //TODO Use Notes class!!!
-    Model = function() {
+    // TODO Use Notes class!!!
+    Model = function () {
         if (!(this instanceof Model)) {
             return new Model();
         }
@@ -12,20 +13,20 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         this.errors = -1;
         this.persistence = new Persistence();
     };
-    Model.prototype.getErrors = function() {
+    Model.prototype.getErrors = function () {
         return this.errors;
-    };  
-    Model.prototype.getNotes = function() {
+    };
+    Model.prototype.getNotes = function () {
         return this.notes;
-    };  
-    Model.prototype.getSolution = function() {
+    };
+    Model.prototype.getSolution = function () {
         return this.cells;
-    };  
-    Model.prototype.getSudoku = function() {
+    };
+    Model.prototype.getSudoku = function () {
         return this.sudoku;
     };
-    Model.prototype.initialize = function() {
-    	var i;
+    Model.prototype.initialize = function () {
+        var i;
         this.cells = generator.generate();
         this.sudoku = generator.generateSudoku(this.cells);
         this.notes = [];
@@ -33,19 +34,19 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         this.remaining = 0;
         this.errors = 0;
         for (i = 0; i < this.sudoku.length; i++) {
-			if (this.sudoku[i] === 0) {
-				this.remaining++;
-			}
-		}
+            if (this.sudoku[i] === 0) {
+                this.remaining++;
+            }
+        }
     };
-    Model.prototype.isSolved = function() {
+    Model.prototype.isSolved = function () {
         return this.remaining === 0;
-    };     
-    Model.prototype.createNotes = function() {
+    };
+    Model.prototype.createNotes = function () {
         this.notes = new Notes(this.sudoku).getAllValues();
         return this.notes;
-    }; 
-    Model.prototype.removeNotes = function(index, value) {
+    };
+    Model.prototype.removeNotes = function (index, value) {
         var cellIndexes, i, theIndex, indexes, theNotes;
         cellIndexes = indexUtil.getBoxIndexes(index).concat(indexUtil.getColumnIndexes(index), indexUtil.getRowIndexes(index));
         indexes = [];
@@ -60,35 +61,35 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
             }
         }
         return indexes;
-    }; 
-    Model.prototype.load = function() {
-    	var i, model, modelString;
-    	modelString = this.persistence.getString('model');
-    	if (modelString) {
-    		model = JSON.parse(modelString);
-    		this.cells = model.cells;
-    		this.sudoku = model.sudoku;
-    		this.notes = [];
-    		this.notes.length = model.notes.length;
-    		for (i = 0; i < model.notes.length; i++) {
-    			if (model.notes[i]) {
-    				this.notes[i] = new Set(model.notes[i].value);
-    			} else {
-    				this.notes[i] = null;
-    			}
-			}
-    		this.remaining = model.remaining;
-    		this.errors = model.errors | 0;
-    	}
-    };    
-    Model.prototype.save = function() {
+    };
+    Model.prototype.load = function () {
+        var i, model, modelString;
+        modelString = this.persistence.getString('model');
+        if (modelString) {
+            model = JSON.parse(modelString);
+            this.cells = model.cells;
+            this.sudoku = model.sudoku;
+            this.notes = [];
+            this.notes.length = model.notes.length;
+            for (i = 0; i < model.notes.length; i++) {
+                if (model.notes[i]) {
+                    this.notes[i] = new Set(model.notes[i].value);
+                } else {
+                    this.notes[i] = null;
+                }
+            }
+            this.remaining = model.remaining;
+            this.errors = model.errors | 0;
+        }
+    };
+    Model.prototype.save = function () {
         var modelString = JSON.stringify(this);
         this.persistence.putString('model', modelString);
-    };    
-    Model.prototype.updateNote = function(index, note) {
+    };
+    Model.prototype.updateNote = function (index, note) {
         var set;
         if (!this.notes[index]) {
-            set = new Set([note]);
+            set = new Set([ note ]);
             this.notes[index] = set;
         } else {
             set = this.notes[index];
@@ -100,9 +101,9 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
         }
         return set;
     };
-    Model.prototype.updateSudoku = function(index, value) {
+    Model.prototype.updateSudoku = function (index, value) {
         if (value !== this.cells[index]) {
-        	this.errors++;
+            this.errors++;
             return false;
         } else {
             this.sudoku[index] = value;
@@ -112,4 +113,3 @@ define(['../generator/generator', '../util/index', '../solver/Notes', '../util/B
     };
     return Model;
 });
-

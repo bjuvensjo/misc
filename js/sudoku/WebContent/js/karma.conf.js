@@ -27,7 +27,6 @@ files = [
   {pattern: 'karma.conf.js', included: false},
   {pattern: 'main.js', included: false},
   
-  
   'main-test.js'
 ];
 

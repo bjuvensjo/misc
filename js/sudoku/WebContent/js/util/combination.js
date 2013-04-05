@@ -1,11 +1,11 @@
-define([], function() {
+define([], function () {
     var Combination = null;
-    Combination = function() {
+    Combination = function () {
         if (!(this instanceof Combination)) {
             return new Combination();
         }
     };
-    Combination.prototype.getCombinations = function(values, n) {
+    Combination.prototype.getCombinations = function (values, n) {
         var result, value, combination, combinations, i, j;
         result = [];
         if (n === 1) {

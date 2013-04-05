@@ -1,6 +1,6 @@
-define([], function() {
+define([], function () {
     var BitSet = null;
-    BitSet = function(values) {
+    BitSet = function (values) {
         // values could be a BitSet or an Array
         if (!(this instanceof BitSet)) {
             return new BitSet(values);
@@ -8,16 +8,16 @@ define([], function() {
         this.value = 0;
         if (values) {
             if (Object.prototype.toString.apply(values) === '[object Array]') {
-            	this.addAll(values);
+                this.addAll(values);
             } else {
                 this.value = values;
             }
         }
     };
-    BitSet.prototype.add = function(value) {
+    BitSet.prototype.add = function (value) {
         this.value |= 1 << value;
     };
-    BitSet.prototype.addAll = function(values) {
+    BitSet.prototype.addAll = function (values) {
         // values could be a BitSet or an Array
         var i;
         if (Object.prototype.toString.apply(values) === '[object Array]') {
@@ -27,9 +27,9 @@ define([], function() {
         } else {
             this.value |= values.getValue();
         }
-    };    
-    BitSet.prototype.asArray = function() {
-        var i, theArray, x;  
+    };
+    BitSet.prototype.asArray = function () {
+        var i, theArray, x;
         i = 0;
         theArray = [];
         x = this.value;
@@ -41,14 +41,14 @@ define([], function() {
             x = x >>> 1;
         }
         return theArray;
-    };        
-    BitSet.prototype.clear = function() {
+    };
+    BitSet.prototype.clear = function () {
         this.value = 0;
     };
-    BitSet.prototype.contains = function(value) {
+    BitSet.prototype.contains = function (value) {
         return !!(this.value & 1 << value);
     };
-    BitSet.prototype.containsAll = function(values) {
+    BitSet.prototype.containsAll = function (values) {
         // values could be a BitSet or an Array
         var i;
         if (Object.prototype.toString.apply(values) === '[object Array]') {
@@ -57,16 +57,16 @@ define([], function() {
                     return false;
                 }
             }
-            return true;            
+            return true;
         } else {
             return (values.getValue() | this.value) === this.value;
         }
     };
-    BitSet.prototype.getValue = function() {
+    BitSet.prototype.getValue = function () {
         return this.value;
     };
-    BitSet.prototype.getSize = function() {
-        var size, x;        
+    BitSet.prototype.getSize = function () {
+        var size, x;
         size = 0;
         x = this.value;
         while (x) {
@@ -75,15 +75,15 @@ define([], function() {
         }
         return size;
     };
-    BitSet.prototype.isEmpty = function() {
+    BitSet.prototype.isEmpty = function () {
         return this.getSize() === 0;
-    };    
-    BitSet.prototype.remove = function(value) {
+    };
+    BitSet.prototype.remove = function (value) {
         var oldValue = this.value;
         this.value &= ~(1 << value);
         return oldValue === this.value ? 0 : 1;
     };
-    BitSet.prototype.removeAll = function(values) {
+    BitSet.prototype.removeAll = function (values) {
         // values could be a BitSet or an Array
         var i, oldValue;
         oldValue = this.value;
