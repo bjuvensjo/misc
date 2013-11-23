@@ -1,7 +1,8 @@
 CACHE MANIFEST
-# 2013-11-24:v1
+# 2013-11-24:v2
 
 # Explicitly cached entries
+/
 index.html
 favicon.ico
 iphone4-splash.png
@@ -13,7 +14,6 @@ img/glyphicons-halflings.png
 js/initializeWorker.js
 js/main.js
 js/lib/require/require.js
-*
 
 # offline.html will be displayed if the user is offline
 FALLBACK:
@@ -21,7 +21,7 @@ FALLBACK:
 
 # All other resources (e.g. sites) require the user to be online. 
 NETWORK:
-# *
+*
 
 # Additional resources to cache
 CACHE:
