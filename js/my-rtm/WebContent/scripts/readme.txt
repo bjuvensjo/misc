@@ -1,0 +1,1 @@
+run r.js from this catalog with: node ../r.js -o app.build.js
