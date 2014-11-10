@@ -1,1 +1,0 @@
-run r.js from this catalog with: node lib/require/r.js -o app.build.js

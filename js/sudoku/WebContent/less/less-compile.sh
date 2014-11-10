@@ -1,1 +1,0 @@
-/usr/local/lib/node_modules/less/bin/lessc app.less > ../css/app.css

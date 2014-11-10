@@ -1,3 +1,0 @@
-* Refactor
-* Add versioning to saved game
-* Automatically fill in when only one note left in square?
